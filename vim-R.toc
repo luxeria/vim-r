@@ -1,0 +1,15 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Was ist ``VIM-R''?}{2}{section.1}
+\contentsline {section}{\numberline {2}Installation}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Vor der Installation}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}R}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}R-Zusatzpakete}{2}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}TMUX}{2}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Screen-Plugin}{3}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}vimrc}{3}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}R-Plugin}{3}{subsection.2.7}
+\contentsline {section}{\numberline {3}Benutzung}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Einfach}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Erweitert}{4}{subsection.3.2}
+\contentsline {section}{\numberline {4}Probleme}{4}{section.4}
+\contentsline {section}{\numberline {5}Weitere Informationen}{4}{section.5}

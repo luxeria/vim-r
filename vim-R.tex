@@ -1,0 +1,188 @@
+\documentclass[a4paper,
+               10pt,
+               fleqn]{article}
+
+\author{Ervin Mazlagic}
+\title{VIM-R}
+
+\usepackage{luxpaper}
+\usepackage{luxtitle}
+ 
+\begin{document}
+\luxtitle{Papers}
+         {VIM-R}
+         {Ervin Mazlagi\'c}
+         {Adligenswil}
+         {2013}
+
+\tableofcontents
+\newpage
+
+\section{Was ist ``VIM-R''?}
+Als \emph{VIM-R} wird das ganze Setup bezeichnet, mit welchem man R innerhalb
+von VIM nutzen kann und dies so, wie man es von IDEs gewohnt ist.
+
+Mit der Konfiguration die vorgestellt wird, kann innerhalb von VIM R-Code
+geschrieben werden und in einer R-Konsole innerhalb von VIM ausgeführt werden.
+Der Benutzer muss sich also nicht mit Ressourcenlähmenden Java-IDEs
+herumschalgen oder auf den Konfort seines Lieblingseditors verzeichten.
+
+\section{Installation}
+Die hier vorgestellte Installation und Konfiguration bezieht sich auf 
+Arch-Linux und kann nahezu identisch für andere Linux-Distributionen 
+angewendet werden.
+
+\subsection{Vor der Installation}
+Es empfiehlt sich ein Backup des VIM-Verzeichnis (also \verb!~/.vim!) zu 
+erstellen, da es überschrieben werden kann durch die Installation!
+
+\subsection{R}
+Zunächst muss R installiert werden
+\begin{lstlisting}
+pacman -S r
+\end{lstlisting}
+Da R einige Abhängigkeiten hat und spezielle Pakete noch in Fortran 
+kompiliert werden müssen, ist es empfehlenswert die folgenden Pakete
+ebenfalls zu installieren.
+\begin{lstlisting}
+pacman -S tcl tk gcc-fortran
+\end{lstlisting}
+Nun kann R im Terminal bereits ausgeführt werden mit dem Kommando
+\verb!R!. Die R-Konsole kann offen gelassen werden für die nächsten 
+Schritte der Installation.
+
+\subsection{R-Zusatzpakete}
+Für die Benutzung von R mittels VIM werden weitere Pakete benötigt wie etwa
+\verb!vimcom! und \verb!setwidth!.
+Diese können aber direkt über die R-Konsole installiert werden.
+In der R-Konsole tippt man hierzu folgendes ein
+\begin{lstlisting}
+install.packages("vimcom", dependencies=TRUE)
+install.packages("setwidth", dependencies=TRUE)
+\end{lstlisting}
+Es kann sein, dass die Installation von Paketen erfordert, dass R von root
+bzw. mit sudo gestartet wurde.
+Weiter ist es sinnvoll die folgenden Zeilen zum \verb!~/.Rprofile! zu ergänzen.
+\begin{lstlisting}
+if(interactive()){
+        library(colorout)
+	library(setwidth)
+	library(vimcom)
+}
+\end{lstlisting}
+
+\subsection{TMUX}
+Damit das ganze Funktioniert, muss \verb!tmux! installiert sein, denn es
+``klebt'' mehrere Terminals oder Konsolen an- bzw. übereinander.
+\begin{lstlisting}
+pacman -S tmux
+\end{lstlisting}
+
+\subsection{Screen-Plugin}
+Bevor das eigentliche VIM-R-Plugin installiert werden kann, muss vorher noch
+ein anderes Plugin zu VIM hinzugefügt werden namens \verb!screen!. 
+Hierzu lädt man sich den sog. \verb!vimball! von screen herunter.
+Danach öffnet man dieses mit VIM und macht daraus ein VIM-Source indem man
+folgendes in VIM eingibt.
+\begin{lstlisting}
+:so %
+\end{lstlisting}
+
+\subsection{vimrc}
+Damit man keine Probleme hat bei der Benutzung sollte VIM vorher noch 
+passend konfiguriert werden. Die folgenden Zeilen sollten in der
+\verb!vimrc! nicht fehlen.
+\begin{lstlisting}
+set nocompatible
+syntax enable
+filetype plugin on
+filetype indent on
+\end{lstlisting}
+
+\subsection{R-Plugin}
+Nun folgt der Kernteil der Installation, nämlich das eigentliche R-Plugin
+für VIM. 
+Zunächst lädt man sich das Plugin herunter und entpackt es in das 
+VIM-Verzeichnis.
+\begin{lstlisting}
+unzip vim-r-plugin-0.9.9.2.zip -d ~/.vim
+\end{lstlisting}
+Danach macht man ein entsprechendes \verb!helptag! für das Plugin.
+Hierzu öffnet man VIM und gibt das folgende ein.
+
+\begin{lstlisting}
+:helptags ~/.vim/doc
+\end{lstlisting}
+An diesem Punkt ist die Installation fertig. Zusätzlich können noch einige
+Optimierungen für TMUX vorgenommen werden. Diese erlauben z.B. den Wechsel
+zwischen den PANES per Mausklick (dies sollte eigentlich alles schon durch
+das r-plugin vorgenommen worden sein). Hierzu kann die \verb!.tmux.conf!
+erweitert werden mit den folgenden Zeilen.
+
+\begin{lstlisting}
+set-option -g prefix C-a
+unbind-key C-b
+bind-key C-a send-prefix
+set-window-option -g mode-keys vi
+set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+set -g mode-mouse on
+set -g mouse-select-pane on
+set -g mouse-resize-pane on
+\end{lstlisting}
+
+\section{Benutzung}
+
+\subsection{Einfach}
+Um nun R mit VIM zu coden kann in einen Terminal \verb!tmux! ausgeführt
+werden. Danach öffnet man ein R-Skript (die Datei muss entweder die Endung
+\verb!.R! oder \verb!.Rnw! haben) mit VIM. Bis zu diesem Punkt ist für den
+Benutzer kein Unterschied vorhanden. Jetzt aktiviert man das Plugin mit
+\begin{lstlisting}
+\rf
+\end{lstlisting}
+Dies spaltet nun den VIM-Screen und es kommt eine R-Konsole hervor. Falls
+die Keybindings von tmux richtig gesetzt sind kann man nun per Mausklick
+vom VIM-Teil in den R-Teil wechseln. Falls die Keybindings nicht funktionieren
+kann dies mittels \verb!<Ctrl-b>o! erfolgen.
+
+Die Bedienung ist sehr vielfältig und kann online nachgelesen werden.
+Der wichtigste Befehl ist \verb!\l!, denn damit sendet man eine Zeile
+aus dem VIM-Teil ind den R-Teil und führ diese auch gleich aus.
+Nebst einer Vielzahl von Kommandos sind auch viele Shortcuts für das
+Skripten an sich vorhanden. Beispielsweise kann mit \verb!Ctrl+_!
+das die oft benutzte Zuseisung \verb!<-! gesetzt werden (im VIM-Teil).
+
+\subsection{Erweitert}
+Das Set ``TMUX + VIM + R'' kann auch etwas einfacher verwendet bzw.
+gestartet werden, indem man eine bestehende Sitzung in dieser 
+Konfiguration ``detached'' und zu einem beliebigen Zeitpunkt dann
+wieder ``reattached''. 
+
+Zuerst startet man die TMUX Sitzung wie gewohnt indem man im Terminal
+\verb!tmux! eingibt. Dann öffnet man eine R-Skript z.B. 
+\verb!vim mystatistic.R! und startet die R-Konsole in VIM mit
+\verb!\rf!. Nun kann man normal skripten und zu einem beliebigen 
+Zeitpunkt die ganze Sitzung in den Hintergrund verschwinden lassen
+mittels des Keybindings \verb!<Ctrl-b>d!. Nun ist man wieder in seinem
+Terminal und sieht die Meldung, dass TMUX \verb![detached]! wurde.
+Jetzt kann man zu einem gewünschten Zeitpunkt einfach mit der Anweisung
+\verb!tmux attach! die alte Sitzung öffnen ohne die ganze Startprozedur
+durchmachen zu müssen.
+
+\section{Probleme}
+Bei der Installation auf Arch funktionieren die Keybindings nicht,
+z.B. kann die Maus nicht verwendet werden um zwischen den panes zu 
+switchen (entsprechende Anweisung ist in der \verb!.tmux.conf!
+eingetragen). Falls jemand einen clue hat bitte mailen an
+\verb!nino.ninux@gmail.com!
+
+\section{Weitere Informationen}
+ArchWiki --- R\\
+\indent \url{https://wiki.archlinux.org/index.php/R}\\
+ArchWiki --- Tmux\\
+\indent \url{https://wiki.archlinux.org/index.php/Tmux#Installation}\\
+vim.org --- Vim-R-plugin\\
+\indent \url{http://www.vim.org/scripts/script.php?script_id=2628}
+
+
+\end{document}
