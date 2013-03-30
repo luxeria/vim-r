@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2013.3.29)  30 MAR 2013 00:10
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2013.3.29)  30 MAR 2013 02:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1556,24 +1556,24 @@ the glossaries will not be updated.
 Package glossaries Warning: No \printglossary or \printglossaries found.
 This document will not have a glossary.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 188.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 189.
 File: lux_logo.pdf Graphic file (type pdf)
 <use lux_logo.pdf>
-Package pdftex.def Info: lux_logo.pdf used on input line 188.
+Package pdftex.def Info: lux_logo.pdf used on input line 189.
 (pdftex.def)             Requested size: 33.70468pt x 35.22711pt.
  [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 188.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 189.
  (./vim-R.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 188.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 188.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 189.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 189.
 Package rerunfilecheck Info: File `vim-R.out' has not changed.
 (rerunfilecheck)             Checksum: C87027DFC67283A8335BDA7649AAC6F5;770.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 188.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 189.
  ) 
 Here is how much of TeX's memory you used:
  29263 strings out of 493488
  517889 string characters out of 3146892
- 843257 words of memory out of 3000000
+ 843258 words of memory out of 3000000
  31875 multiletter control sequences out of 15000+200000
  47095 words of font info for 49 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -1585,7 +1585,7 @@ st/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf-dist/fonts/type1/public/lm
 /lmr12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/
 texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type
 1/urw/courier/ucrro8a.pfb>
-Output written on vim-R.pdf (5 pages, 158342 bytes).
+Output written on vim-R.pdf (5 pages, 158636 bytes).
 PDF statistics:
  225 PDF objects out of 1000 (max. 8388607)
  192 compressed objects within 2 object streams
